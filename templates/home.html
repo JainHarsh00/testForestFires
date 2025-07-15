@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FWI Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .login {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+      .result {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <h1>FWI Prediction</h1>
+
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('predict_datapoint') }}" method="post">
+        <div class="mb-3">
+          <input
+            type="text"
+            name="Temperature"
+            placeholder="Temperature"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="RH"
+            placeholder="RH"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="Ws"
+            placeholder="Ws"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="Rain"
+            placeholder="Rain"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="FFMC"
+            placeholder="FFMC"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="DMC"
+            placeholder="DMC"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="ISI"
+            placeholder="ISI"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="Classes"
+            placeholder="Classes"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="Region"
+            placeholder="Region"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block w-100">
+          Predict
+        </button>
+      </form>
+
+      {% if result %}
+      <div class="result">
+        THE FWI prediction is: <span class="text-success">{{ result }}</span>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
